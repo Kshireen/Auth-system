@@ -6,7 +6,8 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
+import dj_database_url
 from pathlib import Path
 
 from datetime import timedelta
@@ -23,7 +24,7 @@ SECRET_KEY = 'django-insecure-^c3bs&w+7r_=ig@-zkj32+wz9=i&u=m*1-t^43=n@ihb)=0q))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["auth-system-yd64.onrender.com",'']
 
 
 # Application definition
@@ -83,10 +84,11 @@ WSGI_APPLICATION = 'authapi.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 
